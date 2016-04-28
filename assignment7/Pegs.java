@@ -31,7 +31,7 @@ public class Pegs{
 		}
 	}
 	
-	public boolean addBlack(int color){
+	public boolean add(int color){
 		pegs.add(color);
 		return true;
 	}
@@ -54,8 +54,10 @@ public class Pegs{
    	 	}
    	 	if(num_black == 0){
    	 		peg_string = "";
-   	 	}else{
-   	 		peg_string = num_black + "black peg";
+   	 	} else if(num_black == 1){
+   	 		peg_string = 1 + " black peg";
+   	 	} else{
+   	 		peg_string = num_black + " black pegs";
    	 	}
    	 	return peg_string; 
 	}
@@ -70,10 +72,23 @@ public class Pegs{
    	 	}
    	 	if(num_white == 0){
    	 		peg_string = "";
-   	 	}else{
-   	 		peg_string = num_white + "black peg";
+   	 	} else if(num_white == 1){
+   	 		peg_string = 1 + " white peg";
+   	 	} else{
+   	 		peg_string = num_white + " white pegs";
    	 	}
    	 	return peg_string; 
+	}
+	
+	public String toString(){
+		 String black_pegs = toBlackString();
+		 String white_pegs = toWhiteString();
+		 if(black_pegs.equals("") && white_pegs.equals("")){
+			 black_pegs = "No pegs";
+		 } else if(!black_pegs.equals("") && !white_pegs.equals("")){
+			 black_pegs += ", ";
+		 }
+		 return black_pegs + white_pegs;
 	}
 }
  

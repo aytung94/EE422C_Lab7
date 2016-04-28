@@ -48,24 +48,28 @@ import java.util.ArrayList;
      
      public Pegs getPegs(Code correct_code){
     	 Pegs peg = new Pegs(this.size());
+    	 ArrayList<Integer> check_for_white = new ArrayList<Integer>();
     	 // fill pegs with black
     	 for(int i = 0; i < this.code.size(); i++){
     		 if(code.get(i) == correct_code.getCodeInd(i)){
     			 peg.add(Pegs.BLACK);
     			 peg.setSeen(i);
     		 }
+    		 else {
+    			 check_for_white.add(i);
+    		 }
     	 }
     	 // fill pegs with white
-    	 for(int i = 0; i < this.code.size(); i++){
-			 if(peg.getSeen(i) != Pegs.SEEN){ // if peg is not seen
-				 for(int j = 0; j < correct_code.size(); j++){
-					 // if the color has not been touched before and has the correct color
-					 if(this.code.get(i) == correct_code.get(j) && peg.getSeen(j) != Pegs.SEEN){
-						 peg.add(Pegs.WHITE);
-						 peg.setSeen(j);
-					 }
-				 }
-			 }
+    	 for(int i = 0; i < check_for_white.size(); i++){
+    		 int index = check_for_white.get(i);
+    		 for(int j = 0; j < correct_code.size(); j++){ 
+				 // if the color has not been touched before and has the correct color
+        	   	 if(this.code.get(index) == correct_code.get(j) && peg.getSeen(j) != Pegs.SEEN){
+        	   		 peg.add(Pegs.WHITE);
+        	   		 peg.setSeen(j);
+        	   		 break;
+        	     }
+    		 }
     	 }
     	 
     	 return peg;

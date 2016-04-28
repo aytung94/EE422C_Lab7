@@ -13,8 +13,8 @@ import java.util.*;
      
      public static final int DEF_CODE_SIZE = 4;
      public static final int DEF_GUESS_SIZE = 12;
-     public static final int DEF_COLOR_SIZE = 6;
-     public static final char[] DEF_COLORS = {'B','G','O','P','R','Y'}; 
+     public static final int DEF_COLOR_SIZE = 7;
+     public static final char[] DEF_COLORS = {'B','G','O','P','R','Y','-'}; 
 	 
      private int code_size;
      private int guess_size;
@@ -50,7 +50,7 @@ import java.util.*;
     	 Random rand = new Random(System.currentTimeMillis());
     	 secret_code = new Code();
     	 for(int i = 0; i < code_size; i++){
-    		 secret_code.addCode(colors.getColor(rand.nextInt(code_size)));
+    		 secret_code.addCode(colors.getColor(rand.nextInt(color_size - 1)));
     	 }
      }
      
@@ -75,9 +75,9 @@ import java.util.*;
      }
      
      public String getHistroyString(){
-    	 String str_history = "Code | Pegs\n"; 
-    	 for(int i = code_history.size() - 1; i >= 0; i++){
-    		 str_history = str_history + i + ":" + code_history.get(i).toString() + peg_history.get(i).toString(); 
+    	 String str_history = "# : Code  | Feedback\n"; 
+    	 for(int i = code_history.size() - 1; i >= 0; i--){
+    		 str_history = str_history + i + " : " + code_history.get(i).toString() + " | " + peg_history.get(i).toString() + "\n"; 
     	 }
     	 return str_history;
      }
