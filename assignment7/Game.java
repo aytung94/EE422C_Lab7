@@ -11,7 +11,7 @@ import javax.swing.*;
 
 public class Game{
 	
-	private static boolean test_mode = true; 
+	private static boolean test_mode = false; 
 	
 	private Gameboard gameboard;
 	
@@ -41,7 +41,7 @@ public class Game{
 		while(num_guesses < gameboard.getGuessSize() && !correct_guess){
 			 // grab user code guess
 			guess_code_str = JOptionPane.showInputDialog(null, "You have " + (gameboard.getGuessSize() - num_guesses) + " guesses left.\n"
-					+ "What is your next guess?\n"
+					+ "What is your next guess (code length of " + gameboard.getCodeSize() + ") ?\n"
 					+ "Type in the characters " + gameboard.getColor().toPrintString() + " for your guess and press enter.\n" 
 					+ "(To get past inputs and feedback, type \"History\" and press enter)\n"
 					+ "Enter guess:" , msg_title, JOptionPane.INFORMATION_MESSAGE);			 

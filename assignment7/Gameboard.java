@@ -76,8 +76,12 @@ import java.util.*;
      
      public String getHistroyString(){
     	 String str_history = "# : Code  | Feedback\n"; 
+    	 String space = ""; 
     	 for(int i = code_history.size() - 1; i >= 0; i--){
-    		 str_history = str_history + i + " : " + code_history.get(i).toString() + " | " + peg_history.get(i).toString() + "\n"; 
+    		 if(i < 10){
+    			space = " ";  
+    		 }
+    		 str_history = str_history + i + space + ": " + code_history.get(i).toString() + " | " + peg_history.get(i).toString() + "\n";
     	 }
     	 return str_history;
      }
